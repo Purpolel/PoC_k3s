@@ -1,18 +1,14 @@
-{{- $names := .Values.students }}
-{{- $count := .Values.studentCount | int }}
-{{- range $i := until $count }}
-{{- $name := index $names $i | default (printf "student%d" $i) }}
+{{- $students := .Values.students | int }}
+{{- range $i := until $students }}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: dvwa-svc-{{ $name }}
-  annotations:
-    external-dns.alpha.kubernetes.io/hostname: {{ $name }}.dvwaapplicatie.com.
+  name: dvwa-svc-{{ $i }}
 spec:
   type: LoadBalancer
   selector:
-    app: dvwa-{{ $name }}
+    app: dvwa-{{ $i }}
   ports:
     - port: 80
       targetPort: 80
