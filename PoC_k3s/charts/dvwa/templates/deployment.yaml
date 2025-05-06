@@ -1,0 +1,26 @@
+{{- $students := .Values.students | int }}
+{{- range $i := until $students }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dvwa-{{ $i }}
+  labels:
+    app: dvwa-{{ $i }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dvwa-{{ $i }}
+  template:
+    metadata:
+      labels:
+        app: dvwa-{{ $i }}
+    spec:
+      containers:
+        - name: dvwa
+          image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
+          ports:
+            - containerPort: 80
+---
+{{- end }}

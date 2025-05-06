@@ -1,0 +1,7 @@
+# Default number of student environments
+students: 3
+
+# DVWA container image
+image:
+  repository: vulnerables/web-dvwa
+  tag: latest

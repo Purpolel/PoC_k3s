@@ -1,0 +1,16 @@
+{{- $students := .Values.students | int }}
+{{- range $i := until $students }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dvwa-svc-{{ $i }}
+spec:
+  type: LoadBalancer
+  selector:
+    app: dvwa-{{ $i }}
+  ports:
+    - port: 80
+      targetPort: 80
+---
+{{- end }}
