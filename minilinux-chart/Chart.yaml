@@ -1,4 +1,0 @@
-apiVersion: v2
-name: minilinux-chart
-description: A Helm chart for deploying mini Linux containers with MetalLB external IPs
-version: 0.1.0
