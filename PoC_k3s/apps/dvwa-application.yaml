@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: 'https://github.com/YourOrg/PoC_k3s'
+    repoURL: 'https://github.com/Purpolel/PoC_k3s'
     targetRevision: HEAD
     path: charts/dvwa
     helm:
