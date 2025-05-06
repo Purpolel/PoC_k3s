@@ -1,0 +1,1 @@
+replicaCount: 10  # This defines how many mini Linux containers you want to deploy
