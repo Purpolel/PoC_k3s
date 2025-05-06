@@ -1,1 +1,0 @@
-replicaCount: 1  # Change this in Argo CD UI to scale the number of deployments
