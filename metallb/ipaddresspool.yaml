@@ -1,8 +1,0 @@
-apiVersion: metallb.io/v1beta1
-kind: IPAddressPool
-metadata:
-  name: ip-address-pool
-  namespace: metallb-system
-spec:
-  addresses:
-    - 10.10.10.200-10.10.10.250  # Adjust the range to fit your needs
