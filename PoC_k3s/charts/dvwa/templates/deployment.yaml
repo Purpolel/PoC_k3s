@@ -1,23 +1,21 @@
-{{- $names := .Values.students }}
-{{- $count := .Values.studentCount | int }}
-{{- range $i := until $count }}
-{{- $name := index $names $i | default (printf "student%d" $i) }}
+{{- $students := .Values.students | int }}
+{{- range $i := until $students }}
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dvwa-{{ $name }}
+  name: dvwa-{{ $i }}
   labels:
-    app: dvwa-{{ $name }}
+    app: dvwa-{{ $i }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dvwa-{{ $name }}
+      app: dvwa-{{ $i }}
   template:
     metadata:
       labels:
-        app: dvwa-{{ $name }}
+        app: dvwa-{{ $i }}
     spec:
       containers:
         - name: dvwa
