@@ -1,7 +1,5 @@
-students:
-  - Albin
 
-studentCount: 1
+students: 3
 
 image:
   repository: vulnerables/web-dvwa
