@@ -1,0 +1,22 @@
+{{- range $index, $element := until .Values.replicaCount }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minilinux-deployment-{{ $index }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minilinux-{{ $index }}
+  template:
+    metadata:
+      labels:
+        app: minilinux-{{ $index }}
+    spec:
+      containers:
+        - name: minilinux
+          image: alpine:latest
+          command: ["sh", "-c", "while true; do echo Hello; sleep 3600; done"]
+          ports:
+            - containerPort: 80
+{{- end }}
