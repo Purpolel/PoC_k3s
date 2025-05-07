@@ -1,5 +1,5 @@
-{{- $students := .Values.students | int }}
-{{- range $i := until $students }}
+{{- $studentCount := int (add $root.Values.students 1) }}
+{{- range $i := until $studentCount }}
 ---
 apiVersion: v1
 kind: Service
