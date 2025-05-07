@@ -1,6 +1,6 @@
 {{- $root := . }}
-{{- $studentCount := int (add $root.Values.students 1) }}
-{{- range $i := until $studentCount }}
+{{- $studentCount := int $root.Values.students }}
+{{- range $i := untilStep 1 (add $studentCount 1) 1 }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: dvwa
-          image: "{{ $.Values.image.repository }}:{{ $.Values.image.tag }}"
+          image: "{{ $root.Values.image.repository }}:{{ $root.Values.image.tag }}"
           ports:
             - containerPort: 80
 ---
