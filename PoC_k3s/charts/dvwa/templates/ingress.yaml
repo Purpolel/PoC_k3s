@@ -4,19 +4,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dvwa-student{{ $i }}-ingress
+  name: dvwa-student{{ $i + 1 }}-ingress
   namespace: {{ $root.Release.Namespace }}
 spec:
   ingressClassName: nginx
   rules:
-    - host: student{{ $i }}.zeneli.nl
+    - host: student{{ $i + 1 }}.zeneli.nl
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: dvwa-svc-{{ $i }}
+                name: dvwa-svc-{{ $i + 1}}
                 port:
                   number: 80
 ---
