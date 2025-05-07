@@ -1,6 +1,7 @@
 {{- $root := . }}
 {{- $count := int .Values.students }}
 {{- range $i := seq $count }}
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -19,5 +20,4 @@ spec:
                 name: dvwa-svc-{{ $i }}
                 port:
                   number: 80
----
 {{- end }}
