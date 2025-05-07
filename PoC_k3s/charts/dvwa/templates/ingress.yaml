@@ -1,4 +1,3 @@
-{{- range $i := until .Values.students }}
 {{- $studentCount := int .Values.students }}
 {{- range $i := until $studentCount }}
 apiVersion: networking.k8s.io/v1
