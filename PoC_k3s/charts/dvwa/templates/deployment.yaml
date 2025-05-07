@@ -1,4 +1,4 @@
-{{- $students := .Values.students | int }}
+{{- $studentCount := int (add $root.Values.students 1) }}
 {{- range $i := until $students }}
 ---
 apiVersion: apps/v1
