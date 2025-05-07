@@ -1,14 +1,14 @@
 {{- $root := . }}
 {{- $studentCount := int $root.Values.students }}
-{{- range $i := until $studentCount }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: dvwa-student{{ $i }}-ingress
+  name: dvwa-ingress
   namespace: {{ $root.Release.Namespace }}
 spec:
   ingressClassName: nginx
   rules:
+{{- range $i := until $studentCount }}
     - host: student{{ $i }}.zeneli.nl
       http:
         paths:
@@ -19,5 +19,4 @@ spec:
                 name: dvwa-svc-{{ $i }}
                 port:
                   number: 80
----
 {{- end }}
