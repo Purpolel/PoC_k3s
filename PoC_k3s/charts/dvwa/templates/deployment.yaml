@@ -1,6 +1,6 @@
 {{- $root := . }}
-{{- $studentCount := int $root.Values.students }}
-{{- range $i := untilStep 1 (add $studentCount 1) 1 }}
+{{- $count := int .Values.students }}
+{{- range $i := seq $count }}
 ---
 apiVersion: apps/v1
 kind: Deployment
