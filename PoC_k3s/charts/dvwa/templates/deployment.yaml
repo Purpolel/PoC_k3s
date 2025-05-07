@@ -1,3 +1,4 @@
+{{- $root := . }}
 {{- $studentCount := int (add $root.Values.students 1) }}
 {{- range $i := until $studentCount }}
 ---
