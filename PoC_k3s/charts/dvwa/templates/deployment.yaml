@@ -23,5 +23,4 @@ spec:
           image: "{{ $root.Values.image.repository }}:{{ $root.Values.image.tag }}"
           ports:
             - containerPort: 80
----
 {{- end }}
