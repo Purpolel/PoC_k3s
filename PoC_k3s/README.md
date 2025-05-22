@@ -3,7 +3,7 @@
 Deze repo bevat:
 
 - Een Helm-chart (`charts/dvwa`) die `students`-DVWA-instances opstart,
-  elk toegankelijk via een LoadBalancer-service (MetalLB kent externe IP’s toe).
+  elk toegankelijk via een eigen Cloudflare-DNS.
 - Een Argo CD-Application-manifest (`apps/dvwa-application.yaml`) dat deze chart uitrolt.
 
 ---
