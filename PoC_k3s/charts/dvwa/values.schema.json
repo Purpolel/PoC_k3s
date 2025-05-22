@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "students": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Aantal DVWA-instanties (1–10)"
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": { "type": "string" },
+        "tag":        { "type": "string" }
+      },
+      "required": ["repository", "tag"]
+    }
+  },
+  "required": ["students"]
+}
