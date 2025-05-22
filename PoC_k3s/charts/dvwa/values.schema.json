@@ -4,11 +4,11 @@
   "properties": {
     "students": {
       "type": "integer",
-      /*
+      "description": "Aantal DVWA-instanties (geen limiet)"
+      /* 
       "minimum": 1,
       "maximum": 10,
       */
-      "description": "Aantal DVWA-instanties (1–10)"
     },
     "image": {
       "type": "object",
