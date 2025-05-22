@@ -1,5 +1,5 @@
 apiVersion: v2
 name: dvwa
-description: A PoC chart to deploy multiple DVWA instances with MetalLB IPs
+description: Een PoC chart om meerdere DVWA instanties te deployen 
 type: application
 version: 0.1.0
