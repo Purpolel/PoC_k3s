@@ -1,0 +1,51 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: validate-namespace
+  annotations:
+    # Draait vóór alle andere resources
+    argocd.argoproj.io/hook: PreSync
+    # Ruimt op zodra de job suceeded
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      serviceAccountName: default
+      restartPolicy: Never
+      containers:
+        - name: validate
+          image: bitnami/kubectl:1.26
+          env:
+            - name: NAMESPACE
+              value: "{{ .Release.Namespace }}"
+            - name: APP_NAME
+              value: "{{ .Release.Name }}"
+          command:
+            - /bin/sh
+            - -c
+            - |
+              echo "🔍 Validating namespace '$NAMESPACE' for application '$APP_NAME'..."
+
+              # 1) Check of er al pods bestaan
+              pod_count=$(kubectl get pods -n "$NAMESPACE" --no-headers 2>/dev/null | wc -l)
+              if [ "$pod_count" -gt 0 ]; then
+                echo "❌ Namespace '$NAMESPACE' bevat al $pod_count Pod(s)."
+                exit 1
+              fi
+
+              # 2) Check of er al een andere ArgoCD Application is die deployt naar dezelfde namespace
+              #    We gebruiken custom-columns om snel name + destination.namespace te parsen
+              conflict_app=$(kubectl get applications.argoproj.io -n argocd \
+                -o custom-columns=NAME:.metadata.name,NS:.spec.destination.namespace \
+                --no-headers \
+                | awk -v ns="$NAMESPACE" -v me="$APP_NAME" '$2==ns && $1!=me {print $1}' \
+                | head -n1)
+
+              if [ -n "$conflict_app" ]; then
+                echo "❌ Namespace '$NAMESPACE' wordt al gebruikt door ArgoCD Application '$conflict_app'."
+                exit 1
+              fi
+
+              echo "✅ Validatie geslaagd."
+              exit 0
