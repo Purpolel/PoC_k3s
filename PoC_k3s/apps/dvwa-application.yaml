@@ -11,11 +11,12 @@ spec:
     targetRevision: HEAD
     path: charts/dvwa
     helm:
+      createNamespace: true   # ← this makes ArgoCD create *any* namespace you set below
       parameters: []
 
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: dvwa
+    namespace: dvwa          # ← this field is dynamic: change it in the GUI/YAML per-app
 
   syncPolicy:
     automated:
