@@ -5,7 +5,7 @@
     "students": {
       "type": "integer",
       "description": "Aantal DVWA-instanties (geen limiet)",
-      "maximum": 10
+      "maximum": 200
     },
     "image": {
       "type": "object",
