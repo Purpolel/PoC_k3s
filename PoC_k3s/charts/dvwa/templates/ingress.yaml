@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: student{{ $i }}.zeneli.nl
+    - host: student{{ $i }}.{{ $root.Release.Namespace }}.zeneli.nl
       http:
         paths:
           - path: /
