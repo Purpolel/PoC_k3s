@@ -18,6 +18,11 @@ Deze repo bevat:
 ## Het aantal studenten aanpassen
 
 Je **hoeft Git niet te bewerken** om het aantal pods te wijzigen. Gebruik de Helm-parameter-override van Argo CD:
+GUI:
+- Selecteer values.yaml file
+- Voer aantal studenten in
+
+Console:
 
 ```bash
 # Stel het nieuwe aantal studenten in (bijv. 10)
